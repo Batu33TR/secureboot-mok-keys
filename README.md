@@ -19,18 +19,18 @@ Restart your system. You will encounter a blue screen of a tool called MOKManage
 Verify your key is enrolled via:
 sudo mokutil --list-enrolled
 
-Sign your installed kernel (it should be at /boot/vmlinuz-[KERNEL-VERSION]-surface-linux-surface):
-sudo sbsign --key MOK.priv --cert MOK.pem /boot/vmlinuz-[KERNEL-VERSION]-surface-linux-surface --output /boot/vmlinuz-[KERNEL-VERSION]-surface-linux-surface.signed
+Sign your installed kernel (it should be at /boot/vmlinuz-[KERNEL-VERSION]):
+sudo sbsign --key MOK.priv --cert MOK.pem /boot/vmlinuz-[KERNEL-VERSION] --output /boot/vmlinuz-[KERNEL-VERSION].signed
 
 Copy the initram of the unsigned kernel, so we also have an initram for the signed one.
-sudo cp /boot/initrd.img-[KERNEL-VERSION]-surface-linux-surface{,.signed}
+sudo cp /boot/initrd.img-[KERNEL-VERSION]{,.signed}
 
 Update your grub-config
 sudo update-grub
 
 Reboot your system and select the signed kernel. If booting works, you can remove the unsigned kernel:
-sudo mv /boot/vmlinuz-[KERNEL-VERSION]-surface-linux-surface{.signed,}
-sudo mv /boot/initrd.img-[KERNEL-VERSION]-surface-linux-surface{.signed,}
+sudo mv /boot/vmlinuz-[KERNEL-VERSION]{.signed,}
+sudo mv /boot/initrd.img-[KERNEL-VERSION]{.signed,}
 sudo update-grub
 
 Now your system should run under a signed kernel and upgrading GRUB2 works again. If you want to upgrade the custom kernel, you can sign the new version easily by following above steps again from step seven on. Thus BACKUP the MOK-keys (MOK.der, MOK.pem, MOK.priv).
