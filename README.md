@@ -1,1 +1,0 @@
-# secureboot-mok-keys
