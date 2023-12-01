@@ -1,3 +1,6 @@
+# Use [sbctl](https://github.com/Foxboron/sbctl) instead
+### Easy and simple way to sign EFI files!
+
 Create the public and private key for signing the kernel:
 
 ```
